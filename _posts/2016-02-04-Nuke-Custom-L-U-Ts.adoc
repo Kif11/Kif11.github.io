@@ -50,7 +50,9 @@ nuke.menu('Nodes').addCommand( 'BB_Tools/ARRI_LUT', lambda: nuke.createNode(ARRI
 nuke.menu('Nodes').addCommand( 'BB_Tools/RED_LUT', lambda: nuke.createNode(RED_LUT))
 ----
 Beside registering gizmo for Nuke Tab menu I also register them as a custom  Nuke display LUTs.
+
 image::nuke_custom_luts/nuke_lut_node.png[]
+
 Note how the “init.py” script setting a ‘NUKE_LUT’ environmental variable which is hold a path pointing to the current directory plus LUT sub-directory.
 
 After that we should be able to access that variable trough the foloving TCL expression inside of Nuke.
