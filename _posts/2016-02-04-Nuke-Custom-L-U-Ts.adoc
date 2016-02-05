@@ -47,7 +47,7 @@ ARRI_LUT = os.path.join(cwd, 'BB_LUT', 'BB_ARRI_LUT.gizmo').replace("\\", "/")
 nuke.ViewerProcess.register("BB_ARRI_LUT", nuke.Node, (ARRI_Viewer_LUT, ""))
 nuke.ViewerProcess.register("BB_RED_LUT", nuke.Node, (RED_Viewer_LUT, ""))
 
-# Regester costome meny for creatin LUT gizmos
+# Register custome menu for LUT gizmos
 nuke.menu('Nodes').addCommand( 'BB_Tools/ARRI_LUT', lambda: nuke.createNode(ARRI_LUT))
 nuke.menu('Nodes').addCommand( 'BB_Tools/RED_LUT', lambda: nuke.createNode(RED_LUT))
 ----
