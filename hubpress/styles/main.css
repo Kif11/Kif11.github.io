@@ -1115,13 +1115,13 @@ span.CodeMirror-selectedtext {
 }
 #asciidoc-render .post-content img {
     display: block;
-    max-width: 250px;
+    max-width: auto;
     height: auto;
     margin: 0 auto;
     padding: .6em 0
 }
 #asciidoc-render .post-content .full-img {
-    width: 126%;
+    width: 100%;
     max-width: none;
     margin: 0 -13%
 }
