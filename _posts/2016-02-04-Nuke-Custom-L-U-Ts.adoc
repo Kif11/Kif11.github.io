@@ -1,24 +1,52 @@
-= Second Post
+= Nuke Custom LUTs
 
-:hardbreaks:
-:source-highlighter: pygments|coderay|hightlightjs|prettify
+### Problem
 
+Our post-production facility recessive DPX plates with .3dl LUT file outputted from DaVinci Resolve. The LUT was for two different cameras one of which is ARRI Alexa and another is RED. The task is to apply this LUTs to every dailies rendered by artists.
 
-CAUTION: This is my first *paragraph* this i doesn preserve line break
+### Solution
 
-.My List 
-* Item one
-* Item two
+First, we need to create a gizmo for each LUT which contain Vector Field Nuke node with the following expression in the “fectorfield file” field.
 
-This it link:https://docs.google.com/spreadsheets/d/12pk5w2QFfBM_ksNJJUhYA-satFBePcwHN4mkBuf_e7s/edit?usp=sharing[Production Tracker]
-
-[source,python]
 ----
-import pymel.core as pm
-
-references = pm.ls(type='reference')
-
-for r in references:
-    for a in r.listAttr():
-        print a
+[getenv NUKE_LUT]/A_CAM_ArriLogC.3dl
 ----
+
+where “getenv NUKE_LUT” will grab session environmental variable with name “NUKE_LUT” which contain path to the LUTs folder.
+
+image::nuke_custom_luts/nuke_vectorfield_example.png[]
+
+Now create a “init.py” file inside you .nuke directory.
+----
+ C:\Users\User name\.nuke
+----
+The “init.py” file should look something like that.
+
+----
+import nuke
+import os
+
+# Path to executed file
+cwd = os.path.dirname(os.path.realpath(__file__))
+
+# Provide env variable for use in vectorfield node as a relative path
+os.environ['NUKE_LUT'] = os.path.join(cwd, 'BB_LUT')
+
+# Paths to viewer gizmos
+RED_Viewer_LUT = os.path.join(cwd, 'BB_LUT', 'BB_RED_Viewer_LUT.gizmo').replace("\\", "/")
+ARRI_Viewer_LUT = os.path.join(cwd, 'BB_LUT', 'BB_ARRI_Viewer_LUT.gizmo').replace("\\", "/")
+
+# Paths to node gizmos
+RED_LUT = os.path.join(cwd, 'BB_LUT', 'BB_RED_LUT.gizmo').replace("\\", "/")
+ARRI_LUT = os.path.join(cwd, 'BB_LUT', 'BB_ARRI_LUT.gizmo').replace("\\", "/")
+
+# Register custom LUTs
+nuke.ViewerProcess.register("BB_ARRI_LUT", nuke.Node, (ARRI_Viewer_LUT, ""))
+nuke.ViewerProcess.register("BB_RED_LUT", nuke.Node, (RED_Viewer_LUT, ""))
+
+# Regester costome meny for creatin LUT gizmos
+nuke.menu('Nodes').addCommand( 'BB_Tools/ARRI_LUT', lambda: nuke.createNode(ARRI_LUT))
+nuke.menu('Nodes').addCommand( 'BB_Tools/RED_LUT', lambda: nuke.createNode(RED_LUT))
+----
+
+
