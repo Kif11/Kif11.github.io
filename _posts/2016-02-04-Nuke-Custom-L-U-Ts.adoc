@@ -1,5 +1,7 @@
 = Nuke Custom LUTs
 
+:hp-tags: nuke, lut, color managment, pipeline
+
 ### Problem
 
 Our post-production facility recessive DPX plates with .3dl LUT file outputted from DaVinci Resolve. The LUT was for two different cameras one of which is ARRI Alexa and another is RED. The task is to apply this LUTs to every dailies rendered by artists.
