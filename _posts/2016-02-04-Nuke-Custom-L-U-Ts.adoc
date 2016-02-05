@@ -49,5 +49,6 @@ nuke.ViewerProcess.register("BB_RED_LUT", nuke.Node, (RED_Viewer_LUT, ""))
 nuke.menu('Nodes').addCommand( 'BB_Tools/ARRI_LUT', lambda: nuke.createNode(ARRI_LUT))
 nuke.menu('Nodes').addCommand( 'BB_Tools/RED_LUT', lambda: nuke.createNode(RED_LUT))
 ----
-
+Beside registering gizmo for Nuke Tab menu I also register them as a custom  Nuke display LUTs.
+image::nuke_custom_luts/nuke_lut_node.png[]
 
