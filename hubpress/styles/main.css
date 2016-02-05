@@ -1116,7 +1116,7 @@ span.CodeMirror-selectedtext {
 #asciidoc-render .post-content img {
     display: block;
     max-width: 100%;
-    max-width: 100%;
+    max-width: 120%;
     height: auto;
     margin: 0 auto;
     padding: .6em 0
