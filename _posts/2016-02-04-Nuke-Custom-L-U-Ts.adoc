@@ -14,7 +14,7 @@ First, we need to create a gizmo for each LUT which contain Vector Field Nuke no
 
 where “getenv NUKE_LUT” will grab session environmental variable with name “NUKE_LUT” which contain path to the LUTs folder.
 
-image::nuke_custom_luts/nuke_vectorfield_example.png[Nuke Vectorfield Example, 525]
+image::nuke_custom_luts/nuke_vectorfield_example.png[Nuke Vectorfield Example]
 
 Now create a “init.py” file inside you .nuke directory.
 ----
