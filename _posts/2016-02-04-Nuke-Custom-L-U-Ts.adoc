@@ -22,6 +22,7 @@ Now create a “init.py” file inside you .nuke directory.
 ----
 The “init.py” file should look something like that.
 
+[source,python]
 ----
 import nuke
 import os
