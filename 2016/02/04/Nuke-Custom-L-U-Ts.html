@@ -35,7 +35,7 @@
     <meta property="og:description" content="Problem Our post-production facility recessive DPX plates with .3dl LUT file outputted from DaVinci Resolve. The LUT was for two different cameras one of which is ARRI Alexa and another is RED. The task is to apply this LUTs to..." />
     <meta property="og:url" content="https://Kif11.github.io/2016/02/04/Nuke-Custom-L-U-Ts.html" />
     <meta property="article:published_time" content="2016-02-04T08:00:00.000Z" />
-    <meta property="article:modified_time" content="2016-02-05T09:28:47.924Z" />
+    <meta property="article:modified_time" content="2016-02-05T09:30:21.296Z" />
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Nuke Custom LUTs" />
@@ -57,7 +57,7 @@
     "headline": "Nuke Custom LUTs",
     "url": "https://Kif11.github.io/2016/02/04/Nuke-Custom-L-U-Ts.html",
     "datePublished": "2016-02-04T08:00:00.000Z",
-    "dateModified": "2016-02-05T09:28:47.924Z",
+    "dateModified": "2016-02-05T09:30:21.296Z",
     "description": "Problem Our post-production facility recessive DPX plates with .3dl LUT file outputted from DaVinci Resolve. The LUT was for two different cameras one of which is ARRI Alexa and another is RED. The task is to apply this LUTs to..."
 }
     </script>
@@ -200,9 +200,15 @@ nuke.menu('Nodes').addCommand( 'BB_Tools/RED_LUT', lambda: nuke.createNode(RED_L
 </div>
 </div>
 <div class="paragraph">
-<p>Beside registering gizmo for Nuke Tab menu I also register them as a custom  Nuke display LUTs.
-image::nuke_custom_luts/nuke_lut_node.png[]
-Note how the “init.py” script setting a ‘NUKE_LUT’ environmental variable which is hold a path pointing to the current directory plus LUT sub-directory.</p>
+<p>Beside registering gizmo for Nuke Tab menu I also register them as a custom  Nuke display LUTs.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/nuke_custom_luts/nuke_lut_node.png" alt="nuke lut node.png">
+</div>
+</div>
+<div class="paragraph">
+<p>Note how the “init.py” script setting a ‘NUKE_LUT’ environmental variable which is hold a path pointing to the current directory plus LUT sub-directory.</p>
 </div>
 <div class="paragraph">
 <p>After that we should be able to access that variable trough the foloving TCL expression inside of Nuke.</p>
