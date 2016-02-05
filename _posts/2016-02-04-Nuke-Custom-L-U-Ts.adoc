@@ -4,7 +4,7 @@
 
 ### Problem
 
-Our post-production facility recessive DPX plates with .3dl LUT file outputted from DaVinci Resolve. The LUT was for two different cameras one of which is ARRI Alexa and another is RED. The task is to apply this LUTs to every dailies rendered by artists.
+Our post-production facility receive DPX plates with .3dl LUT file from DaVinci Resolve. They provided two LUTs for two cameras one of which was ARRI Alexa and another was RED. The task is to apply this LUTs to every dailies rendered by artists.
 
 ### Solution
 
@@ -20,9 +20,9 @@ image::nuke_custom_luts/nuke_vectorfield_example.png[Nuke Vectorfield Example]
 
 Now create a “init.py” file inside you .nuke directory.
 ----
- C:\Users\User name\.nuke
+ C:\Users\{User name}\.nuke
 ----
-The “init.py” file should look something like that.
+The “init.py” file should look something like this.
 
 [source,python]
 ----
