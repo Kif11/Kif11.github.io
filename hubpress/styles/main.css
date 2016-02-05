@@ -1636,7 +1636,7 @@ span.CodeMirror-selectedtext {
     #asciidoc-render ol,
     #asciidoc-render p,
     #asciidoc-render ul {
-        font-size: .95em;
+        font-size: .75em;
         margin: 0 0 2.5rem
     }
     #asciidoc-render .page-title {
