@@ -1,0 +1,31 @@
+= Maya scene cleanup
+
+:hp-tags: maya, cleanup, assembly, python
+
+
+# Maya.app/Contents/scripts/startup/cleanUpScene.mel
+
+
+
+[source,python]
+----
+import pymel.core as pm
+
+pm.mel.source('cleanUpScene')
+pm.mel.scOpt_performOneCleanup({
+    'setsOption',
+    'nurbsSrfOption',
+    'partitionOption',
+    'animationCurveOption',
+    'deformerOption',
+    'unusedSkinInfsOption',
+    'brushOption',
+    'shaderOption', # need to be carefull with this. See docs
+    'shadingNetworksOption'
+    }
+)
+----
+
+#### Sources
+
+link:http://download.autodesk.com/global/docs/maya2014/en_us/index.html?url=files/Scene_management_Optimize_scene_size.htm,topicNumber=d30e38815[Optimize scene documentation]
