@@ -1,0 +1,35 @@
+= Mount network folder on mac
+
+:hp-tags: mac, mount, drive, networks, IT
+
+I found it rather frustrating to find a good explanation how to access and mount a network drive on mac machine. Specifically, a remote drive that siting on Windows server. Here is a little cheat sheet.
+
+#### Mount command
+
+mount -t {filesystem type} {remote location} {local folder}
+
+Example: mount -t cifs smb://180net1/Collab /Volumes/Collab
+
+NOTE: Do not forget to create folder to mount to +
+Example: _mkdir /Volumes/Collab_
+
+
+#### Servers without authentication
+
+{connection protocol}://{server name}/{folder}
+
+Example: cifs://180net1/Collab
+
+#### Servers with authentication
+
+{connection protocol}://{username}:{password}@{server name}/{folder}
+
+Example: cifs://jack:12345@180net1/Collab
+
+#### Sources
+
+1. link:https://support.apple.com/en-us/HT204445[How to connect with File Sharing on your Mac]
+2. link:https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/mount.8.html[Manual page for mount]
+3. link:https://technet.microsoft.com/en-us/library/cc939973.aspx[Common Internet File System]
+
+]
