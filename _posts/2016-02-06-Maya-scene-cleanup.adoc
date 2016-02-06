@@ -3,7 +3,7 @@
 :hp-tags: maya, cleanup, assembly, python
 
 
-# Maya.app/Contents/scripts/startup/cleanUpScene.mel
+NOTE: Maya.app/Contents/scripts/startup/cleanUpScene.mel
 
 
 
@@ -11,7 +11,9 @@
 ----
 import pymel.core as pm
 
+# Source cleanUpScene.mel to make scOpt_performOneCleanup available
 pm.mel.source('cleanUpScene')
+
 pm.mel.scOpt_performOneCleanup({
     'setsOption',
     'nurbsSrfOption',
@@ -28,4 +30,4 @@ pm.mel.scOpt_performOneCleanup({
 
 #### Sources
 
-link:http://download.autodesk.com/global/docs/maya2014/en_us/index.html?url=files/Scene_management_Optimize_scene_size.htm,topicNumber=d30e38815[Optimize scene documentation]
+link:http://download.autodesk.com/global/docs/maya2014/en_us/index.html?url=files/Scene_management_Optimize_scene_size.htm,topicNumber=d30e38815[Optimize scene size documentation]
