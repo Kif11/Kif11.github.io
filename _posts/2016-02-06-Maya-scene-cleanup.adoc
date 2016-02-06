@@ -3,9 +3,9 @@
 :hp-tags: maya, cleanup, assembly, python
 
 
+Run Maya's Optimize Scene Size standart utility
+
 NOTE: Maya.app/Contents/scripts/startup/cleanUpScene.mel
-
-
 
 [source,python]
 ----
