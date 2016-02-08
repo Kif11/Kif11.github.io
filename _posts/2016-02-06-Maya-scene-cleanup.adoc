@@ -10,7 +10,8 @@ Running custom set of cleanup utilities using Pymel:
 ----
 import pymel.core as pm
 
-# Source cleanUpScene.mel to make scOpt_performOneCleanup available
+# Source cleanUpScene.mel 
+# to make scOpt_performOneCleanup available
 pm.mel.source('cleanUpScene')
 
 pm.mel.scOpt_performOneCleanup({
@@ -21,7 +22,7 @@ pm.mel.scOpt_performOneCleanup({
     'deformerOption',
     'unusedSkinInfsOption',
     'brushOption',
-    'shaderOption', # need to be carefull with this. See docs
+    'shaderOption',
     'shadingNetworksOption'
     }
 )
