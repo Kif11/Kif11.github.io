@@ -2,7 +2,7 @@
 
 :hp-tags: mac, mount, drive, networks, IT
 
-I found it rather frustrating to find a good explanation how to access and mount a network drive on mac machine. Specifically, a remote drive that siting on Windows server. Here is a little cheat sheet.
+I found it rather frustrating to find a good explanation how to access and mount a network drive on mac machines. Specifically, a remote drive that siting on Windows server. Here is a little cheat sheet.
 
 #### Mount command
 
@@ -31,5 +31,3 @@ Example: cifs://jack:12345@180net1/Collab
 1. link:https://support.apple.com/en-us/HT204445[How to connect with File Sharing on your Mac]
 2. link:https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/mount.8.html[Manual page for mount]
 3. link:https://technet.microsoft.com/en-us/library/cc939973.aspx[Common Internet File System]
-
-]
