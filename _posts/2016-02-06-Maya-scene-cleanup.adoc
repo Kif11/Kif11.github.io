@@ -2,8 +2,9 @@
 
 :hp-tags: maya, cleanup, assembly, python
 
+Programatic way to run Maya's Optimize Scene Size standart utility
 
-Run Maya's Optimize Scene Size standart utility
+The original mel source can me found here on mac:
 
 NOTE: Maya.app/Contents/scripts/startup/cleanUpScene.mel
 
