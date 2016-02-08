@@ -4,9 +4,7 @@
 
 Programatic way to run Maya's Optimize Scene Size standart utility
 
-The original mel source can me found here on mac:
-
-NOTE: Maya.app/Contents/scripts/startup/cleanUpScene.mel
+Running custom set of cleanup utilities using Pymel:
 
 [source,python]
 ----
@@ -28,6 +26,10 @@ pm.mel.scOpt_performOneCleanup({
     }
 )
 ----
+
+The original mel source can me found here on mac:
+
+NOTE: Maya.app/Contents/scripts/startup/cleanUpScene.mel
 
 #### Sources
 
