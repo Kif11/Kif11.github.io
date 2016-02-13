@@ -1,0 +1,42 @@
+= Managing Python dependencies with git submodules
+
+:hp-tags: python, git, submodules, dependencies
+
+
+Given the following directory structure:
+
+----
+my_project
+  .git
+  app.py
+----
+
+I want to import one of my git repo as a submodule into given project
+
+Let's create a directory for our modules like this:
+
+----
+mkdir modules
+touch modules/__init__.py
+----
+
+Now we can add our remote repository as a submodule
+----
+git submodules add {github_repo} {local_path}
+
+Example: git submodules add https://github.com/Kif11/logger modules/logger
+----
+
+Updating all of the submodule repos
+
+----
+git submodule foreach git pull origin master
+----
+
+Deleting submodule
+
+----
+git submodule deinit modules/logger
+git rm module/logger
+----
+This will delete the submodule from the modules folder and from .gitmodules file.
