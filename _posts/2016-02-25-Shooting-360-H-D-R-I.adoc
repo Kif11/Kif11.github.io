@@ -34,6 +34,7 @@ NOTE: link:https://www.youtube.com/watch?v=k0HaRZi-FWs[How to find you lens noda
 Level your tripod as shown on the Figure 2.
 
 image::shooting_360_hdri/image03.jpg[caption="Figure 2: ", title="Setting the tripod level"]
+{nbsp}
 
 #### Configuring Nodal Ninja
 Nodal Ninja purpose is to take parallax free images to make it suitable for stitching in one continues panorama later on.
