@@ -70,7 +70,7 @@ Project name
 Scene (e.g. Forest, Silver Lake, Garage Interior etc.)
 Point Number (Different point within the same scene)
 
-image::shooting_360_hdri/image02.jpg[caption="Figure 5: ", title="Slate example"]
+image::shooting_360_hdri/image02.png[caption="Figure 5: ", title="Slate example"]
 {nbsp}
 
 #### Stitching images together
