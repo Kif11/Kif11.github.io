@@ -26,5 +26,8 @@ image::shooting_360_hdri/image04.jpg[caption="Figure 1: ", title="Nodal Ninja"]
 * Mount your camera on Nodal Ninja (NN)
 * Configure Nodal Ninja
 
-NOTE: link:https://www.youtube.com/watch?v=k0HaRZi-FWs[How to find you lens nodal point ]
+NOTE: link:https://www.youtube.com/watch?v=k0HaRZi-FWs[How to find you lens nodal point]
 	  link:http://www.nodalninja.com/Manuals/NN4_USER_MANUAL.pdf[Nodal Ninja manual]
+
+image::shooting_360_hdri/image01.jpg[caption="Figure 2: ", title="Setting the nodal point"]
+image::shooting_360_hdri/image05.jpg[caption="Figure 3: ", title="Setting the nodal point"]
