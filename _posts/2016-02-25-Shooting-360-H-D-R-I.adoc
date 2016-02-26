@@ -16,7 +16,7 @@
 - Smartphone or pan and paper
 - Camera remote (optional)
 
-image::shooting_360_hdri/image04.jpg[Nodal Ninga]
+image::shooting_360_hdri/image04.jpg[caption="Figure 1: ", title="Nodal Ninja"]
 
 #### Shooting Procedure
 * Mount Nodal Ninja on the tripod head.
