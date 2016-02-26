@@ -31,14 +31,31 @@ NOTE: link:https://www.youtube.com/watch?v=k0HaRZi-FWs[How to find you lens noda
       
 #### Configuring the tripod
 
+Level your tripod as shown on the Figure 2.
+
+image::shooting_360_hdri/image03.jpg[caption="Figure 2: ", title="Setting the tripod level"]
 
 #### Configuring Nodal Ninja
 Nodal Ninja purpose is to take parallax free images to make it suitable for stitching in one continues panorama later on.
 
-image::shooting_360_hdri/image01.jpg[caption="Figure 2: ", title="Setting the nodal point side, [1\]"]
-image::shooting_360_hdri/image05.jpg[caption="Figure 3: ", title="Setting the nodal point front, [1\]"]
+image::shooting_360_hdri/image01.jpg[caption="Figure 3: ", title="Setting the nodal point side, [1\]"]
+image::shooting_360_hdri/image05.jpg[caption="Figure 4: ", title="Setting the nodal point front, [1\]"]
 {nbsp}
 
+#### Shooting process
+##### Before shoot checklist
+* Tripod leveled
+* Only nodal point is in the frame
+* Shoot a slate
+* Image is in focus
+* Focus is in manual mode
+* Camera set to manual mode (M)
+* White balance is locked
+* The exposure note change between each bracket shoot and follow repetitive pattern (e.g 1/25, 1/100, 1/400, 1/25, 1/100, 1/400, and so on).
+* ISO set no higher than 800
+
+Shoot set of picture with different exposure in 4 direction (90 degree angle)footnote:[Assuming that you use 8 mm lens on full frame camera. Basically, you want to get overlapping pictures for each direction]
+Depending on your goal you can shoot between 3-5 pictures for each direction with 1 or 2 f-stop difference.
 
 
 
