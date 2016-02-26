@@ -3,6 +3,8 @@
 :hp-tags: onset, hdri, 360
 :hardbreaks:
 
+video::https://www.youtube.com/watch?v=mWiX39bZ3-Y[]
+
 #### Reasons to do on set HDRI capture
 - Use in 3D application for link:http://www.fxguide.com/featured/the-art-of-rendering/[image based lighting]
 - Use as background or base for a matte painting
