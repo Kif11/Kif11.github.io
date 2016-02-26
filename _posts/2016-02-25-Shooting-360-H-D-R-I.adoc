@@ -31,6 +31,7 @@ NOTE: link:https://www.youtube.com/watch?v=k0HaRZi-FWs[How to find you lens noda
 
 image::shooting_360_hdri/image01.jpg[caption="Figure 2: ", title="Setting the nodal point"]
 image::shooting_360_hdri/image05.jpg[caption="Figure 3: ", title="Setting the nodal point"]
+{nbsp}
 
 #### Sources
 1. link:http://www.guide-photo-panoramique.com/[Guide to panoramic photography]
