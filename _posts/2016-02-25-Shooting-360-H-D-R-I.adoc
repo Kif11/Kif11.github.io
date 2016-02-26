@@ -1,0 +1,19 @@
+= Shooting 360 HDRI
+
+:hp-tags: onset, hdri, 360
+
+#### Reasons to do on set HDRI capture
+- Use in 3D application for link:http://www.fxguide.com/featured/the-art-of-rendering/[image based lighting]
+- Use as background or base for a matte painting
+- 360 degree environment projections
+- Reference of the environment
+
+#### Equipment
+- Camera: Canon 5D Mark 2
+- Lens: Canon 8 mm
+- Tripod
+- Nodal Ninja
+- Smartphone or pan and paper
+- Camera remote (optional)
+
+image::<shooting_360_hdri/image04.jpg>[]
