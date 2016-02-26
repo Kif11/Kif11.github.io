@@ -3,7 +3,7 @@
 :hp-tags: vfx, panorama, onset, hdri, 360
 :hardbreaks:
 
-####.
+#### .
 
 One of the task of Visual Effects supervisor on set is to shot spherical degree high dynamic range (HDR) panoramas. Those panoramas can be very useful in post production as a source of light or reference for computer generated environment. This article briefly goes through all the steps required to create basic HDRI.
 
