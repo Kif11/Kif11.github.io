@@ -65,10 +65,10 @@ Depending on your goal you can shoot between 3-5 pictures for each direction wit
 #### Slate
 It is a good practice to shoot a slate for every panorama that you shooting. It might be confusing sometimes to understand where is one sequence ends and another begins. An example of a slate by using a smartphone illustrated on the Figure 5.
 
-Slate for each panorama should include:
-Project name
-Scene (e.g. Forest, Silver Lake, Garage Interior etc.)
-Point Number (Different point within the same scene)
+##### Slate for each panorama should include:
+* Project name
+* Scene (e.g. Forest, Silver Lake, Garage Interior etc.)
+* Point Number (Different point within the same scene)
 
 image::shooting_360_hdri/image02.png[caption="Figure 5: ", title="Slate example"]
 {nbsp}
