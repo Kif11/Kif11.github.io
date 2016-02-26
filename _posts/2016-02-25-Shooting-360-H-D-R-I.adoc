@@ -54,8 +54,12 @@ image::shooting_360_hdri/image05.jpg[caption="Figure 4: ", title="Setting the no
 * The exposure note change between each bracket shoot and follow repetitive pattern (e.g 1/25, 1/100, 1/400, 1/25, 1/100, 1/400, and so on).
 * ISO set no higher than 800
 
-Shoot set of picture with different exposure in 4 direction (90 degree angle)footnote:[Assuming that you use 8 mm lens on full frame camera. Basically, you want to get overlapping pictures for each direction]
+Shoot set of picture with different exposure in 4 direction (90 degree angle)
+
+NOTE: Assuming that you use 8 mm lens on full frame camera. You have to end up with overlapping pictures for each direction
+
 Depending on your goal you can shoot between 3-5 pictures for each direction with 1 or 2 f-stop difference.
+
 
 #### Slate
 It is a good practice to shoot a slate for every panorama that you shooting. It might be confusing sometimes to understand where is one sequence ends and another begins. An example of a slate by using a smartphone illustrated on the Figure 5.
