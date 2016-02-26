@@ -28,10 +28,19 @@ image::shooting_360_hdri/image04.jpg[caption="Figure 1: ", title="Nodal Ninja"]
 
 NOTE: link:https://www.youtube.com/watch?v=k0HaRZi-FWs[How to find you lens nodal point]
 	  link:http://www.nodalninja.com/Manuals/NN4_USER_MANUAL.pdf[Nodal Ninja manual]
+      
+#### Configuring the tripod
 
-image::shooting_360_hdri/image01.jpg[caption="Figure 2: ", title="Setting the nodal point, [1\]"]
-image::shooting_360_hdri/image05.jpg[caption="Figure 3: ", title="Setting the nodal point, [1\]"]
+
+#### Configuring Nodal Ninja
+Nodal Ninja purpose is to take parallax free images to make it suitable for stitching in one continues panorama later on.
+
+image::shooting_360_hdri/image01.jpg[caption="Figure 2: ", title="Setting the nodal point side, [1\]"]
+image::shooting_360_hdri/image05.jpg[caption="Figure 3: ", title="Setting the nodal point front, [1\]"]
 {nbsp}
+
+
+
 
 #### Sources
 1. link:http://www.guide-photo-panoramique.com/[Guide to panoramic photography]
