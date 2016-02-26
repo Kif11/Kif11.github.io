@@ -57,7 +57,16 @@ image::shooting_360_hdri/image05.jpg[caption="Figure 4: ", title="Setting the no
 Shoot set of picture with different exposure in 4 direction (90 degree angle)footnote:[Assuming that you use 8 mm lens on full frame camera. Basically, you want to get overlapping pictures for each direction]
 Depending on your goal you can shoot between 3-5 pictures for each direction with 1 or 2 f-stop difference.
 
+#### Slate
+It is a good practice to shoot a slate for every panorama that you shooting. It might be confusing sometimes to understand where is one sequence ends and another begins.
+
+Slate for each panorama should include:
+Project name
+Scene (e.g. Forest, Silver Lake, Garage Interior etc.)
+Point Number (Different point within the same scene)
+
 
 
 #### Sources
 1. link:http://www.guide-photo-panoramique.com/[Guide to panoramic photography]
+
