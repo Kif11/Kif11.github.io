@@ -66,12 +66,14 @@ Scene (e.g. Forest, Silver Lake, Garage Interior etc.)
 Point Number (Different point within the same scene)
 
 image::shooting_360_hdri/image03.jpg[caption="Figure 5: ", title="Slate example"]
+{nbsp}
 
 #### Stitching images together
 I would recommend PTGui for stitching your images. It does fantastic job combining multiple exposure Canon raw images and then stitching it together.
 If you did not messed up alignment or image exposure along the way this process should be automatic.
 
-image::shooting_360_hdri/image03.jpg[caption="Figure 6: ", title="Example of final lat-long panorama"]
+image::shooting_360_hdri/image00.jpg[caption="Figure 6: ", title="Example of final lat-long panorama"]
+{nbsp}
 
 #### Sources
 1. link:http://www.guide-photo-panoramique.com/[Guide to panoramic photography]
