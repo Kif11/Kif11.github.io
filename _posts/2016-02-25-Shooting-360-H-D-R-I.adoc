@@ -3,8 +3,6 @@
 :hp-tags: onset, hdri, 360
 :hardbreaks:
 
-video::https://www.youtube.com/watch?v=mWiX39bZ3-Y[]
-
 #### Reasons to do on set HDRI capture
 - Use in 3D application for link:http://www.fxguide.com/featured/the-art-of-rendering/[image based lighting]
 - Use as background or base for a matte painting
@@ -46,6 +44,8 @@ image::shooting_360_hdri/image05.jpg[caption="Figure 4: ", title="Setting the no
 {nbsp}
 
 #### Shooting process
+video::mWiX39bZ3-Y[youtube]
+
 ##### Before shoot checklist
 * Tripod leveled
 * Only nodal point is in the frame
