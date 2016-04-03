@@ -1,0 +1,63 @@
+= Houdini material override
+
+:hp-tags: houdini, rendering, material, override, shaders, python
+
+Overriding materials in Houdini  not a simple task that you might think.
+There are many ways to do so such as Takes or
+**shop_surfacepath** method mention here
+(http://forums.odforce.net/topic/13385-global-material-override/) Python
+Filtering technic described in the same post by King Tapir work pretty
+well and do not required that all of your material assigned on the
+object level. However, it might be difficult to figure out how to use it
+for the first time. Made a .py file. In my case it called filter.py and
+contain following code.
+
+....
+import mantra
+
+def filterInstance() :
+    mantra.setproperty('object:surface', 'op:/shop/AO'.split())
+    mantra.setproperty('object:overridedetail', 1)
+
+print "Python Filter Finished"
+....
+
+[cols=",",]
+|=======================================================================
+|`filterInstance()` |Called just prior to the `ray_end` statement which
+locks off the settings for an instance object. The function can
+query `object:` settings and possibly alter them.
+
+|`object:surface = ('')` |The surface shader attached to the object.
+
+|`vm_overridedetail / object:overridedetail = ('false')` |When geometry
+has shaders defined on a per-primitive basis, this parameter will
+override these shaders and use only the object’s shader. This is useful
+when performing matte shading on objects. Not supported for
+per-primitive material assignment (material SOP).
+
+|`'op:/shop/AO'` |Shop material that we going to override
+|=======================================================================
+
+Tell mantra to use this file as a Python Filter
+https://kiko3d.files.wordpress.com/2015/03/command.png[image:https://kiko3d.files.wordpress.com/2015/03/command.png?w=300[command,width=789,height=177]]
+Also, don't forget to force writing of all shaders into .idf by setting
+Declare All SHOPs.
+https://kiko3d.files.wordpress.com/2015/03/declare_all_shops.png[image:https://kiko3d.files.wordpress.com/2015/03/declare_all_shops.png?w=300[declare_all_shops,width=769,height=525]]
+Create a simple SHOP material in this case I'm doing very simple Ambient
+Occlusion shader.
+https://kiko3d.files.wordpress.com/2015/03/oclusion.png[image:https://kiko3d.files.wordpress.com/2015/03/oclusion.png?w=300[oclusion,width=759,height=684]]
+If everything set correctly you should see the print output "Python
+Filter Finished" in your console.
+https://kiko3d.files.wordpress.com/2015/03/screen-shot-2015-03-20-at-12-15-22-pm.png[image:https://kiko3d.files.wordpress.com/2015/03/screen-shot-2015-03-20-at-12-15-22-pm.png?w=300[Screen
+Shot 2015-03-20 at 12.15.22 PM,width=745,height=246]] This is my result
+https://kiko3d.files.wordpress.com/2015/03/un_ao_test.png[image:https://kiko3d.files.wordpress.com/2015/03/un_ao_test.png?w=300[un_ao_test,width=749,height=400]]
+Useful links to explore:
+
+_______________________________________________________
+http://www.sidefx.com/docs/houdini11.0/rendering/python
+
+http://www.sidefx.com/docs/houdini11.0/rendering/ifd
+
+http://www.sidefx.com/docs/houdini11.0/props/mantra
+_______________________________________________________
