@@ -23,7 +23,7 @@
     <meta property="og:description" content="Overriding materials in Houdini  not a simple task that you might think. There are many ways to do so such as Takes or shop_surfacepath method mention here (http://forums.odforce.net/topic/13385-global-material-override/) Python Filtering technic described in the..." />
     <meta property="og:url" content="https://Kif11.github.io/2016/04/03/Houdini-material-override.html" />
     <meta property="article:published_time" content="2016-04-03T07:00:00.000Z" />
-    <meta property="article:modified_time" content="2016-04-03T08:35:16.424Z" />
+    <meta property="article:modified_time" content="2016-04-03T08:37:41.910Z" />
     <meta property="article:tag" content="houdini" />
     <meta property="article:tag" content="rendering" />
     <meta property="article:tag" content="material" />
@@ -51,7 +51,7 @@
     "headline": "Houdini material override",
     "url": "https://Kif11.github.io/2016/04/03/Houdini-material-override.html",
     "datePublished": "2016-04-03T07:00:00.000Z",
-    "dateModified": "2016-04-03T08:35:16.424Z",
+    "dateModified": "2016-04-03T08:37:41.910Z",
     "keywords": "houdini,  rendering,  material,  override,  shaders,  python",
     "description": "Overriding materials in Houdini  not a simple task that you might think. There are many ways to do so such as Takes or shop_surfacepath method mention here (http://forums.odforce.net/topic/13385-global-material-override/) Python Filtering technic described in the..."
 }
@@ -96,15 +96,15 @@ object level. However, it might be difficult to figure out how to use it
 for the first time. Made a .py file. In my case it called filter.py and
 contain following code.</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>import mantra
+<pre class="highlight"><code class="language-python" data-lang="python">import mantra
 
 def filterInstance() :
     mantra.setproperty('object:surface', 'op:/shop/AO'.split())
     mantra.setproperty('object:overridedetail', 1)
 
-print "Python Filter Finished"</pre>
+print "Python Filter Finished"</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all spread">
