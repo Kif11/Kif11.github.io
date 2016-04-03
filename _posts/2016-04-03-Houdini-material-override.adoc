@@ -12,7 +12,7 @@ object level. However, it might be difficult to figure out how to use it
 for the first time. Made a .py file. In my case it called filter.py and
 contain following code.
 
-....
+```python
 import mantra
 
 def filterInstance() :
@@ -20,7 +20,7 @@ def filterInstance() :
     mantra.setproperty('object:overridedetail', 1)
 
 print "Python Filter Finished"
-....
+```
 
 [cols=",",]
 |=======================================================================
