@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Maya Linear Workflow vs. Texture Gamma</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="//Kif11.github.io/themes/Casper/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//Kif11.github.io/themes/Casper/assets/css/screen.css?v=1.0.0" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="https://Kif11.github.io/2016/04/03/Maya-Linear-Workflow-vs-Texture-Gamma.html" />
+    
+    <meta property="og:site_name" content="Visual Effects Pipeline" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Maya Linear Workflow vs. Texture Gamma" />
+    <meta property="og:description" content="Linear workflow is the subjects of a lot of mysteries. Indeed, it is convoluted an hard to understand especially if there are multiple ways to achieve similar but not the same result. Linear workflow mean that all your images going..." />
+    <meta property="og:url" content="https://Kif11.github.io/2016/04/03/Maya-Linear-Workflow-vs-Texture-Gamma.html" />
+    <meta property="article:published_time" content="2016-04-03T07:00:00.000Z" />
+    <meta property="article:modified_time" content="2016-04-03T08:43:48.906Z" />
+    <meta property="article:tag" content="maya" />
+    <meta property="article:tag" content="vray" />
+    <meta property="article:tag" content="linear workflow" />
+    <meta property="article:tag" content="rendering" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Maya Linear Workflow vs. Texture Gamma" />
+    <meta name="twitter:description" content="Linear workflow is the subjects of a lot of mysteries. Indeed, it is convoluted an hard to understand especially if there are multiple ways to achieve similar but not the same result. Linear workflow mean that all your images going..." />
+    <meta name="twitter:url" content="https://Kif11.github.io/2016/04/03/Maya-Linear-Workflow-vs-Texture-Gamma.html" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Visual Effects Pipeline",
+    "author": {
+        "@type": "Person",
+        "name": "Kirill Kovalevskiy",
+        "image": "https://avatars.githubusercontent.com/u/8003487?v=3",
+        "url": "undefined/author/undefined",
+        "sameAs": "http:/kkvisuals.com"
+    },
+    "headline": "Maya Linear Workflow vs. Texture Gamma",
+    "url": "https://Kif11.github.io/2016/04/03/Maya-Linear-Workflow-vs-Texture-Gamma.html",
+    "datePublished": "2016-04-03T07:00:00.000Z",
+    "dateModified": "2016-04-03T08:43:48.906Z",
+    "keywords": "maya,  vray,  linear workflow,  rendering",
+    "description": "Linear workflow is the subjects of a lot of mysteries. Indeed, it is convoluted an hard to understand especially if there are multiple ways to achieve similar but not the same result. Linear workflow mean that all your images going..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost ?" />
+    <link rel="alternate" type="application/rss+xml" title="Visual Effects Pipeline" href="https://Kif11.github.io/rss" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+</head>
+<body class="post-template tag-maya tag-vray tag-linear-workflow tag-rendering">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="https://Kif11.github.io">Home</a>
+        <!-- <a class="subscribe-button icon-feed" href="https://Kif11.github.io/rss/">Subscribe</a> -->
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-maya tag-vray tag-linear-workflow tag-rendering">
+
+        <header class="post-header">
+            <h1 class="post-title">Maya Linear Workflow vs. Texture Gamma</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2016-04-03">03 April 2016</time>  on <a href="https://Kif11.github.io/tag/maya">maya</a>, <a href="https://Kif11.github.io/tag/vray"> vray</a>, <a href="https://Kif11.github.io/tag/linear-workflow"> linear workflow</a>, <a href="https://Kif11.github.io/tag/rendering"> rendering</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Linear workflow is the subjects of a lot of mysteries. Indeed, it is
+convoluted an hard to understand especially if there are multiple ways
+to achieve similar but not the same result. Linear workflow mean that
+<strong>all your images going trough the pipiline in linear color space.</strong> For
+example render output from Maya in linear space go to Nuke where get
+processed and render to final delivery format in sRGB. In this article I
+want to show my observation end experiments that I&#8217;ve done with V-Ray
+and Maya and how at firs glance similar things  can produce quite
+different result. The most important thing to know is that all of the
+<strong>renders perform calculation with linear colors</strong>, thus all the sources
+supplied, such as texture images, has to be linear. People often forget
+that shaders also need to be supplied with linear images. Most of the
+source files (.jpg, png, tif, etc.) used as textures have non-linear
+gamma (2.2) applied to it. Majority of render engines perform texture
+filtering in two places. First, when a shader process a texture, second,
+when the render engine calculating the image (anti-aliasing). As a
+matter of fact, we want to convert our images before shader start to
+perform its calculations, otherwise when it come to applying filtering
+the math will be wrong. When you select you gamma conversion in
+application there are usually a couple choices sRGB and Gamma 2.2. This
+color spaces have slightly different curve which probably will be
+undistingvishble.  Here is an example of two overlapping curve taken
+from Nuke LUT Settings.
+<span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/srgb_gamma2-2_difference1.png?w=300" alt="sRGB_Gamma2.2_difference" width="594" height="530"></span>
+My test set up include two texture images. One texture used as is with
+gamma 2.2 color space, another was converted to linear by using Nuke
+Colorspace node.
+<a href="https://kiko3d.files.wordpress.com/2015/03/brick_2_2_gamma.jpg"><span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/brick_2_2_gamma.jpg?w=300" alt="brick_2_2_gamma" width="300" height="200"></span></a>
+<a href="https://kiko3d.files.wordpress.com/2015/03/brick_linear_gamma.jpg"><span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/brick_linear_gamma.jpg?w=300" alt="brick_linear_gamma" width="300" height="200"></span></a>
+<span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/nuke_2-2_to_linear.png?w=300" alt="nuke_2.2_to_linear" width="615" height="400"></span>
+First I went and disabled all of the filtering on texture as well as in
+render settings in order to get clean more predictable result. In term
+of linear workflow I&#8217;ve been testing the following cases:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: %;">
+<col style="width: %;">
+<col style="width: %;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Input</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Option</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Case 1</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Texture in gamma 2.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linear Workflow Toggle On</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Case 2</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Texture in gamma 2.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vray Texture Input Gamma 2.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Case 3</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linear Texture</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All off</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Here is example with  Vray Texture Input Gamma 2.2.
+<a href="https://kiko3d.files.wordpress.com/2015/03/vray_extra_attribute.png"><span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/vray_extra_attribute.png?w=300" alt="vray_extra_attribute" width="685" height="179"></span></a>
+This image show Linear Workflow Toggle On.
+<span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/vray_linear_workflow.png?w=300" alt="vray_linear_workflow" width="687" height="464"></span>
+With linear workflow toggle ON you will get warning saying that <em>linear
+workflow toggle was deprecated</em> but documentation doesn&#8217;t explain why, I
+also tried to find information on  Chaos Group forum with no luck.</p>
+</div>
+<div id="linear-workflow--this-option-is-deprecated-and-will-be-removed-in-future-versions-of-v-ray.-when-this-option-is-checked-v-ray-will-automatically-apply-the-inverse-of-the-gamma-correction-that-you-have-set-in-thegamma-field-to-allvraymtlmaterials-in-your-scene.note-this-option-is-intended-to-be-used-only-for-quickly-converting-old-scenes-which-are-not-set-up-with-proper-linear-workflow-in-mind.-this-option-is-not-a-replacement-for-proper-linear-workflow.-httpdocs.chaosgroup.comdisplayvray3colormapping" class="paragraph">
+<p><strong>Linear workflow </strong>- this option is deprecated and will be removed in
+future versions of V-Ray. When this option is checked V-Ray will
+automatically apply the inverse of the Gamma correction that you have
+set in the <strong>Gamma</strong> field to
+all <a href="http://docs.chaosgroup.com/display/VRAY3/VRayMtl">VRayMtl</a> materials
+in your scene. <strong>Note:</strong> this option is intended to be used only for
+quickly converting old scenes which are not set up with proper linear
+workflow in mind. This option is not a replacement for proper linear
+workflow. <a href="http://docs.chaosgroup.com/display/VRAY3/Color+Mapping#" class="bare">http://docs.chaosgroup.com/display/VRAY3/Color+Mapping#</a></p>
+</div>
+<div class="paragraph">
+<p>The following image demonstrate the difference between Linear Workflow
+Toggle and on texture gamma correction. One main thing to note here that
+image corrected with VRay Extra Attribute (Case 2) has now difference
+with linear image without any correction (Case 3). On the other hand,
+image witch rendered with linear workflow toggle on has noticeable
+degradation in dark colors.
+<span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/gamma_difference1.gif" alt="gamma_difference" width="747" height="744"></span>
+Most likely degradation happening due to filtering process that
+happening when texture get process by shader. By specifying texture
+input gamma on shader VRay can interpret texture to linear work space
+before doing the actual calculation. In case when linear workflow is
+turned on in render settings the texture gets filtered with non-linear
+gamma which lead to some errors in shader math and only after that
+render convert the texture to linear work space and perform
+further calculations.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="resources">Resources</h4>
+<div class="paragraph">
+<p>This article was inspired by the great tutorial from Alexey Mazurenko.
+Unfortunately only available in Russian. <a href="https://vimeo.com/53806660" class="bare">https://vimeo.com/53806660</a>
+Fabulus paper from siggraph about RENDERMAN
+<a href="http://old.siggraph.org/publications/2006cn/course25.pdf" class="bare">http://old.siggraph.org/publications/2006cn/course25.pdf</a> What Ri spec
+newer told you
+<a href="http://renderman.pixar.com/view/what-the-rispec-never-told-you" class="bare">http://renderman.pixar.com/view/what-the-rispec-never-told-you</a></p>
+</div>
+</div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="" style="background-image: url(https://avatars.githubusercontent.com/u/8003487?v=3)"><span class="hidden">Kirill Kovalevskiy's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="">Kirill Kovalevskiy</a></h4>
+
+                    <p>Read <a href="">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">San Francisco</span>
+                    <span class="author-link icon-link"><a href="http:/kkvisuals.com">http:/kkvisuals.com</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Maya%20Linear%20Workflow%20vs.%20Texture%20Gamma&amp;url=https://Kif11.github.io/2016/04/03/Maya-Linear-Workflow-vs-Texture-Gamma.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://Kif11.github.io/2016/04/03/Maya-Linear-Workflow-vs-Texture-Gamma.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://Kif11.github.io/2016/04/03/Maya-Linear-Workflow-vs-Texture-Gamma.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="https://Kif11.github.io">Visual Effects Pipeline</a> &copy; 2016</section>
+        <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</a></section>
+    </footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();      
+      </script>
+
+    <script type="text/javascript" src="//Kif11.github.io/themes/Casper/assets/js/jquery.fitvids.js?v=1.0.0"></script>
+    <script type="text/javascript" src="//Kif11.github.io/themes/Casper/assets/js/index.js?v=1.0.0"></script>
+
+</body>
+</html>
