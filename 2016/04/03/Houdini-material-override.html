@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Houdini material override</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="//Kif11.github.io/themes/Casper/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//Kif11.github.io/themes/Casper/assets/css/screen.css?v=1.0.0" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="https://Kif11.github.io/2016/04/03/Houdini-material-override.html" />
+    
+    <meta property="og:site_name" content="Visual Effects Pipeline" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Houdini material override" />
+    <meta property="og:description" content="Overriding materials in Houdini  not a simple task that you might think. There are many ways to do so such as Takes or shop_surfacepath method mention here (http://forums.odforce.net/topic/13385-global-material-override/) Python Filtering technic described in the..." />
+    <meta property="og:url" content="https://Kif11.github.io/2016/04/03/Houdini-material-override.html" />
+    <meta property="article:published_time" content="2016-04-03T07:00:00.000Z" />
+    <meta property="article:modified_time" content="2016-04-03T08:35:16.424Z" />
+    <meta property="article:tag" content="houdini" />
+    <meta property="article:tag" content="rendering" />
+    <meta property="article:tag" content="material" />
+    <meta property="article:tag" content="override" />
+    <meta property="article:tag" content="shaders" />
+    <meta property="article:tag" content="python" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Houdini material override" />
+    <meta name="twitter:description" content="Overriding materials in Houdini  not a simple task that you might think. There are many ways to do so such as Takes or shop_surfacepath method mention here (http://forums.odforce.net/topic/13385-global-material-override/) Python Filtering technic described in the..." />
+    <meta name="twitter:url" content="https://Kif11.github.io/2016/04/03/Houdini-material-override.html" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Visual Effects Pipeline",
+    "author": {
+        "@type": "Person",
+        "name": "Kirill Kovalevskiy",
+        "image": "https://avatars.githubusercontent.com/u/8003487?v=3",
+        "url": "undefined/author/undefined",
+        "sameAs": "http:/kkvisuals.com"
+    },
+    "headline": "Houdini material override",
+    "url": "https://Kif11.github.io/2016/04/03/Houdini-material-override.html",
+    "datePublished": "2016-04-03T07:00:00.000Z",
+    "dateModified": "2016-04-03T08:35:16.424Z",
+    "keywords": "houdini,  rendering,  material,  override,  shaders,  python",
+    "description": "Overriding materials in Houdini  not a simple task that you might think. There are many ways to do so such as Takes or shop_surfacepath method mention here (http://forums.odforce.net/topic/13385-global-material-override/) Python Filtering technic described in the..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost ?" />
+    <link rel="alternate" type="application/rss+xml" title="Visual Effects Pipeline" href="https://Kif11.github.io/rss" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+</head>
+<body class="post-template tag-houdini tag-rendering tag-material tag-override tag-shaders tag-python">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="https://Kif11.github.io">Home</a>
+        <!-- <a class="subscribe-button icon-feed" href="https://Kif11.github.io/rss/">Subscribe</a> -->
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-houdini tag-rendering tag-material tag-override tag-shaders tag-python">
+
+        <header class="post-header">
+            <h1 class="post-title">Houdini material override</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2016-04-03">03 April 2016</time>  on <a href="https://Kif11.github.io/tag/houdini">houdini</a>, <a href="https://Kif11.github.io/tag/rendering"> rendering</a>, <a href="https://Kif11.github.io/tag/material"> material</a>, <a href="https://Kif11.github.io/tag/override"> override</a>, <a href="https://Kif11.github.io/tag/shaders"> shaders</a>, <a href="https://Kif11.github.io/tag/python"> python</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <div class="paragraph">
+<p>Overriding materials in Houdini  not a simple task that you might think.
+There are many ways to do so such as Takes or
+<strong>shop_surfacepath</strong> method mention here
+(<a href="http://forums.odforce.net/topic/13385-global-material-override/" class="bare">http://forums.odforce.net/topic/13385-global-material-override/</a>) Python
+Filtering technic described in the same post by King Tapir work pretty
+well and do not required that all of your material assigned on the
+object level. However, it might be difficult to figure out how to use it
+for the first time. Made a .py file. In my case it called filter.py and
+contain following code.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>import mantra
+
+def filterInstance() :
+    mantra.setproperty('object:surface', 'op:/shop/AO'.split())
+    mantra.setproperty('object:overridedetail', 1)
+
+print "Python Filter Finished"</pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: %;">
+<col style="width: %;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>filterInstance()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Called just prior to the <code>ray_end</code> statement which
+locks off the settings for an instance object. The function can
+query <code>object:</code> settings and possibly alter them.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>object:surface = ('')</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The surface shader attached to the object.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>vm_overridedetail / object:overridedetail = ('false')</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When geometry
+has shaders defined on a per-primitive basis, this parameter will
+override these shaders and use only the object’s shader. This is useful
+when performing matte shading on objects. Not supported for
+per-primitive material assignment (material SOP).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'op:/shop/AO'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shop material that we going to override</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Tell mantra to use this file as a Python Filter
+<a href="https://kiko3d.files.wordpress.com/2015/03/command.png"><span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/command.png?w=300" alt="command" width="789" height="177"></span></a>
+Also, don&#8217;t forget to force writing of all shaders into .idf by setting
+Declare All SHOPs.
+<a href="https://kiko3d.files.wordpress.com/2015/03/declare_all_shops.png"><span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/declare_all_shops.png?w=300" alt="declare_all_shops" width="769" height="525"></span></a>
+Create a simple SHOP material in this case I&#8217;m doing very simple Ambient
+Occlusion shader.
+<a href="https://kiko3d.files.wordpress.com/2015/03/oclusion.png"><span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/oclusion.png?w=300" alt="oclusion" width="759" height="684"></span></a>
+If everything set correctly you should see the print output "Python
+Filter Finished" in your console.
+<a href="https://kiko3d.files.wordpress.com/2015/03/screen-shot-2015-03-20-at-12-15-22-pm.png"><span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/screen-shot-2015-03-20-at-12-15-22-pm.png?w=300" alt="Screen Shot 2015-03-20 at 12.15.22 PM" width="745" height="246"></span></a> This is my result
+<a href="https://kiko3d.files.wordpress.com/2015/03/un_ao_test.png"><span class="image"><img src="https://kiko3d.files.wordpress.com/2015/03/un_ao_test.png?w=300" alt="un_ao_test" width="749" height="400"></span></a>
+Useful links to explore:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="http://www.sidefx.com/docs/houdini11.0/rendering/python" class="bare">http://www.sidefx.com/docs/houdini11.0/rendering/python</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://www.sidefx.com/docs/houdini11.0/rendering/ifd" class="bare">http://www.sidefx.com/docs/houdini11.0/rendering/ifd</a></p>
+</div>
+<div class="paragraph">
+<p><a href="http://www.sidefx.com/docs/houdini11.0/props/mantra" class="bare">http://www.sidefx.com/docs/houdini11.0/props/mantra</a></p>
+</div>
+</blockquote>
+</div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="" style="background-image: url(https://avatars.githubusercontent.com/u/8003487?v=3)"><span class="hidden">Kirill Kovalevskiy's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="">Kirill Kovalevskiy</a></h4>
+
+                    <p>Read <a href="">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">San Francisco</span>
+                    <span class="author-link icon-link"><a href="http:/kkvisuals.com">http:/kkvisuals.com</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Houdini%20material%20override&amp;url=https://Kif11.github.io/2016/04/03/Houdini-material-override.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://Kif11.github.io/2016/04/03/Houdini-material-override.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://Kif11.github.io/2016/04/03/Houdini-material-override.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="https://Kif11.github.io">Visual Effects Pipeline</a> &copy; 2016</section>
+        <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</a></section>
+    </footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();      
+      </script>
+
+    <script type="text/javascript" src="//Kif11.github.io/themes/Casper/assets/js/jquery.fitvids.js?v=1.0.0"></script>
+    <script type="text/javascript" src="//Kif11.github.io/themes/Casper/assets/js/index.js?v=1.0.0"></script>
+
+</body>
+</html>
