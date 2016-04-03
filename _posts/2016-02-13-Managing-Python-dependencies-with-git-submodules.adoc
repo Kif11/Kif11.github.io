@@ -20,6 +20,8 @@ mkdir modules
 touch modules/__init__.py
 ----
 
+##### Adding submodules
+
 Now we can add our remote repository as a submodule
 ----
 git submodule add {github_repo} {local_path}
@@ -27,7 +29,7 @@ git submodule add {github_repo} {local_path}
 Example: git submodule add https://github.com/Kif11/logger modules/logger
 ----
 
-Cloning a repo with git submodules
+##### Cloning a repo with git submodules
 
 ----
 git clone --recurse-submodules {github_repo}
@@ -41,13 +43,13 @@ git submodule update --init --recursive
 
 immediately after the clone is finished.
 
-Updating all of the submodule repos
+##### Updating all of the submodule repos
 
 ----
 git submodule foreach git pull origin master
 ----
 
-Deleting submodule
+##### Deleting submodule
 
 ----
 git submodule deinit modules/logger
