@@ -1,0 +1,91 @@
+= Maya Linear Workflow vs. Texture Gamma
+
+:hp-tags: maya, vray, linear workflow, rendering
+
+Linear workflow is the subjects of a lot of mysteries. Indeed, it is
+convoluted an hard to understand especially if there are multiple ways
+to achieve similar but not the same result. Linear workflow mean that
+*all your images going trough the pipiline in linear color space.* For
+example render output from Maya in linear space go to Nuke where get
+processed and render to final delivery format in sRGB. In this article I
+want to show my observation end experiments that I've done with V-Ray
+and Maya and how at firs glance similar things  can produce quite
+different result. The most important thing to know is that all of the
+**renders perform calculation with linear colors**, thus all the sources
+supplied, such as texture images, has to be linear. People often forget
+that shaders also need to be supplied with linear images. Most of the
+source files (.jpg, png, tif, etc.) used as textures have non-linear
+gamma (2.2) applied to it. Majority of render engines perform texture
+filtering in two places. First, when a shader process a texture, second,
+when the render engine calculating the image (anti-aliasing). As a
+matter of fact, we want to convert our images before shader start to
+perform its calculations, otherwise when it come to applying filtering
+the math will be wrong. When you select you gamma conversion in
+application there are usually a couple choices sRGB and Gamma 2.2. This
+color spaces have slightly different curve which probably will be
+undistingvishble.  Here is an example of two overlapping curve taken
+from Nuke LUT Settings.
+image:https://kiko3d.files.wordpress.com/2015/03/srgb_gamma2-2_difference1.png?w=300[sRGB_Gamma2.2_difference,width=594,height=530]
+My test set up include two texture images. One texture used as is with
+gamma 2.2 color space, another was converted to linear by using Nuke
+Colorspace node.
+https://kiko3d.files.wordpress.com/2015/03/brick_2_2_gamma.jpg[image:https://kiko3d.files.wordpress.com/2015/03/brick_2_2_gamma.jpg?w=300[brick_2_2_gamma,width=300,height=200]]
+https://kiko3d.files.wordpress.com/2015/03/brick_linear_gamma.jpg[image:https://kiko3d.files.wordpress.com/2015/03/brick_linear_gamma.jpg?w=300[brick_linear_gamma,width=300,height=200]]
+image:https://kiko3d.files.wordpress.com/2015/03/nuke_2-2_to_linear.png?w=300[nuke_2.2_to_linear,width=615,height=400]
+First I went and disabled all of the filtering on texture as well as in
+render settings in order to get clean more predictable result. In term
+of linear workflow I've been testing the following cases:
+
+[cols=",,",]
+|============================================================
+| |*Input* |*Option*
+|*Case 1* |Texture in gamma 2.2 |Linear Workflow Toggle On
+|*Case 2* |Texture in gamma 2.2 |Vray Texture Input Gamma 2.2
+|*Case 3* |Linear Texture |All off
+|============================================================
+
+Here is example with  Vray Texture Input Gamma 2.2.
+https://kiko3d.files.wordpress.com/2015/03/vray_extra_attribute.png[image:https://kiko3d.files.wordpress.com/2015/03/vray_extra_attribute.png?w=300[vray_extra_attribute,width=685,height=179]]
+This image show Linear Workflow Toggle On.
+image:https://kiko3d.files.wordpress.com/2015/03/vray_linear_workflow.png?w=300[vray_linear_workflow,width=687,height=464]
+With linear workflow toggle ON you will get warning saying that _linear
+workflow toggle was deprecated_ but documentation doesn't explain why, I
+also tried to find information on  Chaos Group forum with no luck.
+
+[[linear-workflow--this-option-is-deprecated-and-will-be-removed-in-future-versions-of-v-ray.-when-this-option-is-checked-v-ray-will-automatically-apply-the-inverse-of-the-gamma-correction-that-you-have-set-in-thegamma-field-to-allvraymtlmaterials-in-your-scene.note-this-option-is-intended-to-be-used-only-for-quickly-converting-old-scenes-which-are-not-set-up-with-proper-linear-workflow-in-mind.-this-option-is-not-a-replacement-for-proper-linear-workflow.-httpdocs.chaosgroup.comdisplayvray3colormapping]]
+**Linear workflow **- this option is deprecated and will be removed in
+future versions of V-Ray. When this option is checked V-Ray will
+automatically apply the inverse of the Gamma correction that you have
+set in the *Gamma* field to
+all http://docs.chaosgroup.com/display/VRAY3/VRayMtl[VRayMtl] materials
+in your scene. *Note:* this option is intended to be used only for
+quickly converting old scenes which are not set up with proper linear
+workflow in mind. This option is not a replacement for proper linear
+workflow. http://docs.chaosgroup.com/display/VRAY3/Color+Mapping#
+
+The following image demonstrate the difference between Linear Workflow
+Toggle and on texture gamma correction. One main thing to note here that
+image corrected with VRay Extra Attribute (Case 2) has now difference
+with linear image without any correction (Case 3). On the other hand,
+image witch rendered with linear workflow toggle on has noticeable
+degradation in dark colors.
+image:https://kiko3d.files.wordpress.com/2015/03/gamma_difference1.gif[gamma_difference,width=747,height=744]
+Most likely degradation happening due to filtering process that
+happening when texture get process by shader. By specifying texture
+input gamma on shader VRay can interpret texture to linear work space
+before doing the actual calculation. In case when linear workflow is
+turned on in render settings the texture gets filtered with non-linear
+gamma which lead to some errors in shader math and only after that
+render convert the texture to linear work space and perform
+further calculations.
+
+[[resources]]
+Resources
+^^^^^^^^^
+
+This article was inspired by the great tutorial from Alexey Mazurenko.
+Unfortunately only available in Russian. https://vimeo.com/53806660
+Fabulus paper from siggraph about RENDERMAN
+http://old.siggraph.org/publications/2006cn/course25.pdf What Ri spec
+newer told you
+http://renderman.pixar.com/view/what-the-rispec-never-told-you
