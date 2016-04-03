@@ -1,0 +1,154 @@
+= Nodejs | Function Closures and Scope
+
+:hp-tags: nodejs, javascript, closure, scope, tutorial
+
+The task is to execute a function with a callback multiple times but
+each time I want to pass my loop 'item' variable to the callback
+function. Let's consider the following code example.
+
+```javascript
+for (var item = 0; item < 3; item++) {
+
+    /* 
+        This function gets called immediately,
+        however execCallback will not.
+        Note that this function won't block the execution
+    */
+    setTimeout(callback, 100);
+
+    function callback() {
+
+        /*
+            Since setTimeout need 100 milesecond
+            console.log will be executed
+            only when 'for' loop is finished 
+            leaving as with item = 10
+        */
+        console.log(item);
+
+    }
+
+    // This console.log will executed immidiately
+    console.log('Item: %s', item)
+
+}
+```
+
+This is the code output
+
+....
+λ node callback-args_02.js
+Item: 0
+Item: 1
+Item: 2
+3
+3
+3
+....
+
+We can see that item gets logged immediately 3 times but callback
+returned 100 ms later when the item was on its last value which is 3.
+How can we male callback aware of current loop iteration? We can do that
+by cloning the value of 'item' variable into the scope of another
+function which can not be altered from higher level.
+
+____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+A closure is an expression (typically a function) that can have free
+variables together with an environment that binds those variables (that
+"closes" the expression).Since a nested function is a closure, this
+means that a nested function can "inherit" the arguments and variables
+of its containing function. In other words, the inner function contains
+the scope of the outer function. [1]
+____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+The following example demonstrate the concept of local and global scope
+
+```javascript
+var globalVar = "I'm global var";
+
+function myFunc() {
+
+    // This will create globalVar in local context of myFunc
+    // which doesn't interfear with the global one
+    var globalVar = "I'm local var";
+    return globalVar;
+
+}
+
+console.log('myFunc scope globalVar:', myFunc());
+console.log('Global scope globalVar:', globalVar);
+```
+
+Output:
+
+....
+λ node scope-example.js
+myFunc scope globalVar: I'm local var
+Global scope globalVar: I'm global var
+....
+
+The other very important moment to understand is that function can
+return another function. Please consider the following example.
+
+....
+function addNum(x) {
+    // addNum return anonymous function
+    return function (y) {
+        // Note how x value accessible to this scope 
+        return x + y;
+    };
+var addTwo = addNum(2);
+
+console.log(addTwo(4));
+....
+
+Notice how value 2 gets saved inside of addTwo object scope. This might
+be used to solve our original callback problem. Let's wrap our
+setTimeout into another function. By doing so we will crate function
+closure and create new object with our 'item' value for every iteration
+of the loop.
+
+```javascript
+for (var item = 0; item < 3; item++) {
+
+    /*
+        New objec created from callWraper every iteration of the loop
+        it will preserve our item number for callback
+    */
+    function callWrapper(i) {
+
+        setTimeout(callback, 100);
+
+        function callback(){
+            /*
+                Since callback function is a child of
+                callWrapper it will have access to its scope
+            */
+            console.log(i);
+        }
+
+    }
+
+    callWrapper(item);
+
+    // This console.log will executed immidiately
+    console.log('Item: %s', item)
+}
+```
+
+Result
+
+....
+λ node callback-with-args-example.js
+Item: 0
+Item: 1
+Item: 2
+0
+1
+2
+....
+
+Now we calling setTimer asynchronously and preserving the 'item' value
+to print it later to the console. Sources
+
+1.  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#Closures
