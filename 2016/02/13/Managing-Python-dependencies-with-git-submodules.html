@@ -23,7 +23,7 @@
     <meta property="og:description" content="Given the following directory structure: my_project   .git   app.py I want to import one of my git repo as a submodule into given project Let&amp;#8217;s create a directory for our modules like this: mkdir modules touch modules/..." />
     <meta property="og:url" content="https://Kif11.github.io/2016/02/13/Managing-Python-dependencies-with-git-submodules.html" />
     <meta property="article:published_time" content="2016-02-13T08:00:00.000Z" />
-    <meta property="article:modified_time" content="2016-04-03T01:56:01.076Z" />
+    <meta property="article:modified_time" content="2016-04-03T01:57:41.212Z" />
     <meta property="article:tag" content="python" />
     <meta property="article:tag" content="git" />
     <meta property="article:tag" content="submodules" />
@@ -49,7 +49,7 @@
     "headline": "Managing Python dependencies with git submodules",
     "url": "https://Kif11.github.io/2016/02/13/Managing-Python-dependencies-with-git-submodules.html",
     "datePublished": "2016-02-13T08:00:00.000Z",
-    "dateModified": "2016-04-03T01:56:01.076Z",
+    "dateModified": "2016-04-03T01:57:41.212Z",
     "keywords": "python,  git,  submodules,  dependencies",
     "description": "Given the following directory structure: my_project   .git   app.py I want to import one of my git repo as a submodule into given project Let&amp;#8217;s create a directory for our modules like this: mkdir modules touch modules/..."
 }
@@ -83,7 +83,9 @@
         </header>
 
         <section class="post-content">
-            <div class="paragraph">
+            <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
 <p>Given the following directory structure:</p>
 </div>
 <div class="listingblock">
@@ -105,6 +107,10 @@
 touch modules/__init__.py</pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_adding_submodules">Adding submodules</h5>
 <div class="paragraph">
 <p>Now we can add our remote repository as a submodule</p>
 </div>
@@ -115,9 +121,9 @@ touch modules/__init__.py</pre>
 Example: git submodule add https://github.com/Kif11/logger modules/logger</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Cloning a repo with git submodules</p>
 </div>
+<div class="sect4">
+<h5 id="_cloning_a_repo_with_git_submodules">Cloning a repo with git submodules</h5>
 <div class="listingblock">
 <div class="content">
 <pre>git clone --recurse-submodules {github_repo}</pre>
@@ -134,17 +140,17 @@ Example: git submodule add https://github.com/Kif11/logger modules/logger</pre>
 <div class="paragraph">
 <p>immediately after the clone is finished.</p>
 </div>
-<div class="paragraph">
-<p>Updating all of the submodule repos</p>
 </div>
+<div class="sect4">
+<h5 id="_updating_all_of_the_submodule_repos">Updating all of the submodule repos</h5>
 <div class="listingblock">
 <div class="content">
 <pre>git submodule foreach git pull origin master</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Deleting submodule</p>
 </div>
+<div class="sect4">
+<h5 id="_deleting_submodule">Deleting submodule</h5>
 <div class="listingblock">
 <div class="content">
 <pre>git submodule deinit modules/logger
@@ -153,6 +159,7 @@ git rm module/logger</pre>
 </div>
 <div class="paragraph">
 <p>This will delete the submodule from the modules folder and from .gitmodules file.</p>
+</div>
 </div>
         </section>
 
