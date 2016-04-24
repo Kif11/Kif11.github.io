@@ -50,11 +50,10 @@ video::mWiX39bZ3-Y[youtube]
 
 ##### Before shoot checklist
 * Tripod leveled
-* Only nodal point is in the frame
 * Shoot a slate
 * Image is in focus
-* Focus is in manual mode
 * Camera set to manual mode (M)
+* Autofocus is disabled
 * White balance is locked
 * The exposure note change between each bracket shoot and follow repetitive pattern (e.g 1/25, 1/100, 1/400, 1/25, 1/100, 1/400, and so on).
 * ISO set no higher than 800
@@ -67,18 +66,18 @@ Depending on your goal you can shoot between 3-5 pictures for each direction wit
 
 
 #### Slate
-It is a good practice to shoot a slate for every panorama that you shooting. It might be confusing sometimes to understand where is one sequence ends and another begins. An example of a slate by using a smartphone illustrated on the Figure 5.
+It is a good practice to shoot a slate for every panorama that you shooting. The reason for that is when you stiching your photos it might be difficult to find where is one sequence ends and another begins. An example of a slate by using a smartphone illustrated on the Figure 5.
 
 ##### Slate for each panorama should include:
 * Project name
 * Scene (e.g. Forest, Silver Lake, Garage Interior etc.)
-* Point Number (Different point within the same scene)
+* Point Number (Different shooting point within the same scene)
 
 image::shooting_360_hdri/image02.png[caption="Figure 5: ", title="Slate example"]
 {nbsp}
 
 #### Stitching images together
-I would recommend PTGui for stitching your images. It does fantastic job combining multiple exposure Canon raw images and then stitching it together.
+I would recommend PTGui for stitching your images. It does fantastic job combining multiple exposure Canon RAW images and then stitching it together.
 If you did not messed up alignment or image exposure along the way this process should be automatic.
 
 image::shooting_360_hdri/image00.jpg[caption="Figure 6: ", title="Example of final lat-long panorama"]
