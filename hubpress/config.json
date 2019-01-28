@@ -1,1 +1,44 @@
-{"meta":{"username":"Kif11","repositoryName":"Kif11.github.io","branch":"master"},"site":{"title":"Visual Effects Pipeline","description":"Movie production and engineering","logo":"","cover":"https://raw.githubusercontent.com/Kif11/Kif11.github.io/master/images/site/mnt_and_fog_01.jpg","url":"https://Kif11.github.io"},"socialnetwork":{"email":"kovalewskiy@gmail.com","linkedin":"https://www.linkedin.com/in/kkvisuals","instagram":"","github":"https://github.com/Kif11"},"theme":{"name":"Casper","url":"//Kif11.github.io/themes/Casper"}}
+{
+  "meta": {
+    "username": "Kif11",
+    "repositoryName": "Kif11.github.io",
+    "branch": "master"
+  },
+  "site": {
+    "title": "Visual Effects Pipeline",
+    "description": "Movie production and engineering",
+    "logo": "",
+    "cover": "https://raw.githubusercontent.com/Kif11/Kif11.github.io/master/images/site/mnt_and_fog_01.jpg",
+    "url": "https://Kif11.github.io"
+  },
+  "socialnetwork": {
+    "email": "kovalewskiy@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/kkvisuals",
+    "instagram": "",
+    "github": "https://github.com/Kif11"
+  },
+  "theme": {
+    "name": "casper",
+    "url": "//Kif11.github.io/themes/Casper"
+  },
+  "urls": {
+    "site": "https://Kif11.github.io",
+    "hubpress": "http://localhost:8000",
+    "theme": "//Kif11.github.io/themes/casper",
+    "images": "https://Kif11.github.io/images"
+  },
+  "initialisationConfigComponent": {
+    "name": "initialise-configuration",
+    "computed": {},
+    "methods": {},
+    "staticRenderFns": [
+      null,
+      null,
+      null
+    ],
+    "_compiled": true,
+    "beforeCreate": [
+      null
+    ]
+  }
+}
